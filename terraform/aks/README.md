@@ -114,7 +114,7 @@ variable "aks_ingress_lb_ip" {
 }
 ```
 
-### Max pod number per node
+#### Max pod number per node
 
 The max pod number per node:
 
