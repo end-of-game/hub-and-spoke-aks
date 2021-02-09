@@ -57,6 +57,7 @@ variable "vnet_spoke_to_peer" {
 Apply differences with the live infrastructure:
 
 ```bash
+$ cd terraform/hub
 $ terraform apply
 ```
 

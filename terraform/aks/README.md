@@ -44,7 +44,7 @@ The stack need an SSH key pair to allow SSH connection to the AKS nodes.
 Use the following script to generate an SSH key pair and push resulting file as secrets in the Key Vault:
 
 ```bash
-$ cd ../../scripts
+$ cd scripts
 $ ./aks_key_pair.sh [dev|staging|prod]
 ```
 
@@ -119,6 +119,7 @@ variable "aks_ingress_lb_ip" {
 Create the different workspace we need:
 
 ```bash
+$ cd terraform/aks
 $ terraform init
 $ terraform workspace new prod
 $ terraform workspace new staging

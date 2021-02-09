@@ -9,6 +9,7 @@ Check the variables in [variables.tf](variables.tf)
 Deploy the stack:
 
 ```bash
+cd terraform/vault
 $ terraform init
 $ terraform apply
 ```
