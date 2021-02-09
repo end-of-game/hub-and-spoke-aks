@@ -167,4 +167,8 @@ env.sh
 
 **/.temp/*kube_config
 
+### SSH keys ###
+.rsa
+.rsa.pub
+
 # End of https://www.gitignore.io/api/macos,terraform,terragrunt,virtualenv,intellij+all

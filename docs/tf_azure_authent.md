@@ -105,6 +105,12 @@ These values map to the Terraform variables like so:
 - password is the client_secret defined above.
 - tenant is the tenant_id defined above.
 
+After that, to authenticate with the Terraform Service Principal:
+
+```bash
+$ az login --service-principal -u $ARM_CLIENT_ID -p $ARM_CLIENT_SECRET --tenant $ARM_TENANT_ID
+```
+
 > You can create your own `env.sh` script at the root of the project. Take example upon the model [env.sh.example](../env.sh.example).
 
 ## Add Azure AD permissions
