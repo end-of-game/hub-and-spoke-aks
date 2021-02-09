@@ -4,6 +4,18 @@
 
 You need to check few things before executing the stack.
 
+### Create workspaces
+
+Create the different workspace we need if they don't exist:
+
+```bash
+$ cd terraform/aks
+$ terraform init
+$ terraform workspace new prod
+$ terraform workspace new staging
+$ terraform workspace new dev
+```
+
 ### Current terraform worspace
 
 Terraform will create or update the environment corresponding to the current worspace.
@@ -131,18 +143,6 @@ variable "aks_max_pod_number" {
 
 The AKS service will reserve IP in the subnetf or all that number of pods.
 That's why it is important to choose an IP for the load balancer at the end of the range.
-
-### Create workspaces
-
-Create the different workspace we need:
-
-```bash
-$ cd terraform/aks
-$ terraform init
-$ terraform workspace new prod
-$ terraform workspace new staging
-$ terraform workspace new dev
-```
 
 ## Deploy
 
