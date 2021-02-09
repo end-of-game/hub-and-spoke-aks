@@ -114,6 +114,24 @@ variable "aks_ingress_lb_ip" {
 }
 ```
 
+### Max pod number per node
+
+The max pod number per node:
+
+```hcl
+variable "aks_max_pod_number" {
+  type    = map
+  default = {
+    "dev"    = 100
+    "test"   = 100
+    "prod"   = 100
+  }
+}
+```
+
+The AKS service will reserve IP in the subnetf or all that number of pods.
+That's why it is important to choose an IP for the load balancer at the end of the range.
+
 ### Create workspaces
 
 Create the different workspace we need:

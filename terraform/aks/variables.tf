@@ -46,6 +46,14 @@ variable "aks_node_pool_cidr" {
     "prod"     = "10.3.0.0/17"
   }
 }
+variable "aks_max_pod_number" {
+  type    = map
+  default = {
+    "dev"    = 100
+    "test"   = 100
+    "prod"   = 100
+  }
+}
 variable "node_count" {
   type = map
   default = {
@@ -101,4 +109,5 @@ locals {
   env_aks_node_pool_cidr      = lookup(var.aks_node_pool_cidr, terraform.workspace)
   env_aks_ingress_lb_ip       = lookup(var.aks_ingress_lb_ip, terraform.workspace)
   env_ssh_pub_key_secret_name = lookup(var.ssh_pub_key_secret_name, terraform.workspace)
+  env_aks_max_pod_number      = lookup(var.aks_max_pod_number, terraform.workspace)
 }

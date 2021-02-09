@@ -60,7 +60,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
   default_node_pool {
     name                 = format("aks${local.environment}pool")
     node_count           = local.env_node_count
-    max_pods             = "100"
+    max_pods             = var.env_aks_max_pod_number
     type                 = "VirtualMachineScaleSets"
     vm_size              = local.env_node_size
     os_disk_type         = "Ephemeral"
