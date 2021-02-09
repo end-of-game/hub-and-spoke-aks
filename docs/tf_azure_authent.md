@@ -115,8 +115,11 @@ $ az login --service-principal -u $ARM_CLIENT_ID -p $ARM_CLIENT_SECRET --tenant 
 
 ## Add Azure AD permissions
 
-Terraform needs to create Azure AD applications and Service Principals.
-So we need to add the role `Global Administrator` to the Terraform Service Principal `service_terraform`.
+Terraform needs to create Azure resources and AD applications or Service Principals, so it needs a high level of permissions.
+You can give the `Owner` role on the subscription to the Terraform Service Principal `service_terraform`.
+For managing Azure AD resources, the SP also needs some API access.
+
+Find all details in [this very good post](https://simonemms.com/blog/2021/01/10/setting-terraform-service-principal-to-work-with-azure-active-directory/).
 
 ## Check Terraform works
 
