@@ -208,6 +208,8 @@ resource "azurerm_application_gateway" "appgw" {
       frontend_port_name             = "${local.frontend_port_name}-${http_listener.value.protocol}"
       protocol                       = http_listener.value.protocol
       host_name                      = http_listener.value.dns
+      # Uncomment for Https listeners
+      # ssl_certificate_name           = "wildcard"
     }
   }
 
