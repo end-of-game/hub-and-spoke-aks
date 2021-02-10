@@ -28,7 +28,7 @@ variable "domain" {
 
 #### Certificate
 
-The name of the wildcard certificate corresponding to the domain:
+The name of the wildcard certificate corresponding to the domain if you want to use the Application Gateay for SSL termination:
 
 ```hcl
 variable "certificate_wildcard_name_in_vault" {
@@ -58,8 +58,9 @@ variable "exposed_dns" {
 
 > **Note**:
 >
-> - These DNS are also the ones used in the ingress rules
+> - In this example I use a http listner because I don't have control over the domain I'm using
 > - If you configure the SSL termination on the Application Gateway, you should indicate the `Https` protocol instead
+> - These DNS are also the ones used in the ingress rules when deploying application in the different environments
 
 #### Vnet peering
 
