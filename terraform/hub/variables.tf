@@ -27,6 +27,10 @@ variable "end_date" {
   default = "2023-01-01T01:02:03Z"
 }
 data "azurerm_client_config" "current" {}
+data "azurerm_key_vault" "vault" {
+  name                = "${var.project}-vault"
+  resource_group_name = "${var.project}-vault"
+}
 
 # Project variables
 # --------------------------
@@ -74,6 +78,10 @@ variable "exposed_dns" {
       "protocol" = "Http"
     }
   }
+}
+variable "certificate_wildcard_name_in_vault" {
+  type    = string 
+  default = "wildcard-linkbynet-com"
 }
 
 # Local variables

@@ -11,9 +11,14 @@ resource "azurerm_user_assigned_identity" "appgw" {
   name                = "${local.stack_name}-appgw"
 }
 
+# Get wildcard certificate from Vault
+# data "azurerm_key_vault_certificate" "wildcard" {
+#   name         = var.certificate_wildcard_name_in_vault
+#   key_vault_id = data.azurerm_key_vault.vault.ids
+# }
+
 # Create public IP for App Gateway
-# - #TODO Eventually add a DNS in order to be independant from the public IP that will change if we recreate it
-# - #TODO Eventually use dynamic blocks for environment dependant material
+# - #TODO Eventually add a public DNS in order to be independant from the public IP that will change if we recreate it
 resource "azurerm_public_ip" "appgw" {
   name                = "${local.stack_name}-appgw"
   resource_group_name = azurerm_resource_group.hub.name
@@ -107,6 +112,12 @@ resource "azurerm_application_gateway" "appgw" {
     name = "${local.frontend_port_name}-Http"
     port = 80
   }
+
+  # Certificates
+  # ssl_certificate {
+  #   name                = "wildcard"
+  #   key_vault_secret_id = data.azurerm_key_vault_certificate.wildcard.secret_id
+  # }
 
   # -----------------------------------------------
   # Backends

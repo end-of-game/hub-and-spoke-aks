@@ -19,9 +19,22 @@ variable "domain" {
 }
 ```
 
+#### Certificate
+
+The name of the wildcard certificate corresponding to the domain:
+
+```hcl
+variable "certificate_wildcard_name_in_vault" {
+  type    = string 
+  default = "wildcard-linkbynet-com"
+}
+```
+
+> **Note**: It is used only if you set the `ssl_certificate` block [in the application gateway resource](application_gateway.tf).
+
 #### Application DNS
 
-The list of DNS that point to App gateway and need to be redirected to AKS environments:
+the list of the DNS of your applications that you have pointed to the public IP of the gateway application and need to be redirected to the right AKS environments:
 
 ```hcl
 variable "exposed_dns" {
@@ -35,6 +48,11 @@ variable "exposed_dns" {
   }
 }
 ```
+
+> **Note**:
+>
+> - These DNS are also the ones used in the ingress rules
+> - If you configure the SSL termination on the Application Gateway, you should indicate the `Https` protocol instead
 
 #### Vnet peering
 
