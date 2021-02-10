@@ -4,6 +4,13 @@ This stack deploy the common infrastructure, mainly the exposition of service to
 
 ## Requirement
 
+### SSL certiticate
+
+Generate the wildcard SSL certiticate for the domain you want to use.
+Push it in the key vault as certificate.
+
+It is also possible to use multiple certificates for différents domains or for different dedicated records. Just adapt the application gateway configuration (http_listener, request_routing_rule) accordingly.
+
 ### Check variables
 
 Check the variables of the stack in the file [variables.tf](./variables.tf).
