@@ -91,12 +91,12 @@ jobs:
       - name: Get ACR Name
         id: acrname
         run: |
-          acrname="acraksclusterdemo"
+          acrname="aksvitacrdev"
           echo "::set-output name=acrname::$acrname"
       - name: Get App Name
         id: appname
         run: |
-          appname="details"
+          appname="productpage"
           echo "::set-output name=appname::$appname"
       # Checks out the baseline repository
       - uses: actions/checkout@v2

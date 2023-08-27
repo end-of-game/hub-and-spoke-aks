@@ -92,7 +92,7 @@ jobs:
       - name: Get ACR Name
         id: acrname
         run: |
-          acrname="acraksclusterdemo"
+          acrname="aksvitacrdev"
           echo "::set-output name=acrname::$acrname"
       - name: Get App Name
         id: appname
