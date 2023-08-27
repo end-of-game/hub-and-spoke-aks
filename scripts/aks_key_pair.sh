@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VAULT_NAME=hub-and-spoke-vault
+VAULT_NAME=vaultspokevituity
 KEY_PREFIX=aks
 TMP_DIR=./temp
 

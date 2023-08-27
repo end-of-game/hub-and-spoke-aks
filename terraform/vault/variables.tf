@@ -3,7 +3,7 @@
 
 variable "location" {
   type    = string
-  default = "francecentral"
+  default = "westus2"
 }
 variable "project" {
   type    = string
@@ -30,7 +30,7 @@ data "azurerm_client_config" "current" {}
 variable "azure_administrator_object_id" {
   type = list
   default = [
-    "79f9fdc8-fa4c-43d9-85a9-d0860ab6f463",
+    "fda24d3f-ad67-4fb3-a776-e0bd1e8b4720",
   ]
 }
 

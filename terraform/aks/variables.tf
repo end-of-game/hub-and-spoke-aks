@@ -3,7 +3,7 @@
 
 variable "location" {
   type    = string
-  default = "francecentral"
+  default = "westus2"
 }
 variable "project" {
   type    = string
@@ -24,70 +24,78 @@ variable "default_tags" {
 }
 data "azurerm_client_config" "current" {}
 data "azurerm_key_vault" "vault" {
-  name                = "${var.project}-vault"
+  name                = "vaultspokevituity"
   resource_group_name = "${var.project}-vault"
 }
 
 # Project variables
 # ------------------------------------
 variable "vnet_cidr" {
-  type = map
+  description = "A map of VNet CIDRs for each environment."
+  type        = map(string)
   default = {
-    "dev"    = "10.1.0.0/16" 
-    "test"   = "10.2.0.0/16"
-    "prod"   = "10.3.0.0/16"
+    default = "10.0.0.0/8"
+    dev     = "10.0.0.0/8"
+    staging    = "10.250.0.0/16"
+    prod    = "10.230.0.0/16"
   }
 }
 variable "aks_node_pool_cidr" {
   type = map
   default = {
-    "dev"      = "10.1.0.0/17"
-    "staging"  = "10.2.0.0/17"
-    "prod"     = "10.3.0.0/17"
+    "default"  = "10.240.0.0/16"
+    "dev"      = "10.240.0.0/16"
+    "staging"  = "10.250.0.0/22"
+    "prod"     = "10.230.0.0/22"
   }
 }
 variable "aks_max_pod_number" {
   type    = map
   default = {
+    default  = 100
     "dev"    = 100
-    "test"   = 100
+    "staging"   = 100
     "prod"   = 100
   }
 }
 variable "node_count" {
   type = map
   default = {
-    "dev"    = 1
-    "test"   = 1
-    "prod"   = 2
+    default  = 2
+    "dev"    = 2
+    "staging"   = 2
+    "prod"   = 3
   }
 }
 variable "node_size" {
   type = map
   default = {
-    "dev"    = "standard_ds3_v2" # 4vCPUs, 14GiB
-    "test"   = "standard_ds3_v2" # 4vCPUs, 14GiB
-    "prod"   = "standard_ds3_v2" # 4vCPUs, 14GiB
+    default  = "standard_d4ads_v5" # 4vCPUs, 14GiB
+    "dev"    = "standard_d4ads_v5" # 4vCPUs, 14GiB
+    "staging"   = "standard_d4ads_v5" # 4vCPUs, 14GiB
+    "prod"   = "standard_d4ads_v5" # 4vCPUs, 14GiB
   }
 }
 variable "ssh_pub_key_secret_name" {
   type = map
   default = {
+    "default"   = "aks-dev-ssh-pub"
     "dev"       = "aks-dev-ssh-pub"
-    "staging"   = "aks-test-ssh-pub"
+    "staging"   = "aks-staging-ssh-pub"
     "prod"      = "aks-prod-ssh-pub"
   }
 }
 variable "aks_ingress_lb_ip" {
   type = map
   default = {
+    "default"  = "10.1.127.200"
     "dev"    = "10.1.127.200"
-    "test"   = "10.2.127.200"
+    "staging"   = "10.2.127.200"
     "prod"   = "10.3.127.200"
   }
 }
 variable "end_date" {
-  default = "2023-01-01T01:02:03Z"
+  default = "2025-01-01T01:02:03Z"
 }
 variable "node_admin_username" {
   type    = string
@@ -102,7 +110,10 @@ locals {
   stack_name  = "${var.project}-${var.application}-${terraform.workspace}"
 
   # Local variables prefixed with 'env_' are environment dependant
-  env_tags                    = merge(var.default_tags, map("Environment", local.environment))
+  env_tags = merge(var.default_tags, tomap({
+    "Environment" = local.environment
+  }))
+
   env_vnet_cidr               = lookup(var.vnet_cidr, terraform.workspace)
   env_node_count              = lookup(var.node_count, terraform.workspace)
   env_node_size               = lookup(var.node_size, terraform.workspace)

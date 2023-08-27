@@ -1,11 +1,11 @@
 terraform {
   
-  # Terraform backend configuration
+ # Terraform backend configuration
   backend "azurerm" {
-    resource_group_name   = "terraform-backends"
-    storage_account_name  = "terraform1612822914"
+    resource_group_name   = "rg-aks-apimprivate"
+    storage_account_name  = "terraformbackendsstate"
     container_name        = "hubandspokeaks"
-    key                   = "aks/terraform.tfstate"
+    key                   = "vault/terraform.tfstate"
   }
 
   # List required providers with version constraints

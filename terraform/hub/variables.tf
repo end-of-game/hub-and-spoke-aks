@@ -3,7 +3,7 @@
 
 variable "location" {
   type    = string
-  default = "francecentral"
+  default = "westus2"
 }
 variable "project" {
   type    = string
@@ -24,11 +24,11 @@ variable "default_tags" {
   }
 }
 variable "end_date" {
-  default = "2023-01-01T01:02:03Z"
+  default = "2025-01-01T01:02:03Z"
 }
 data "azurerm_client_config" "current" {}
 data "azurerm_key_vault" "vault" {
-  name                = "${var.project}-vault"
+  name                = "vaultspokevituity"
   resource_group_name = "${var.project}-vault"
 }
 
@@ -38,18 +38,15 @@ data "azurerm_key_vault" "vault" {
 # Network
 variable "vnet_cidr" {
   type    = string
-  default = "10.0.0.0/16"
+  default = "172.16.0.0/16"
   # 100.0.0.0 - 100.0.255.255
 }
 variable "subnet_waf_cidr" {
   type    = string
-  default = "10.0.0.0/22"
+  default = "172.16.0.0/22"
   # 100.0.0.0 - 100.0.3.255
 }
-variable "subnet_management_cidr" {
-  type    = string
-  default = "10.0.4.0/22"
-}
+
 # The name corresponds to both vnet name and resource group name
 variable "vnet_spoke_to_peer" {
   type = list

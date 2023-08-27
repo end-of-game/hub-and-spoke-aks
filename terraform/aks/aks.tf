@@ -47,7 +47,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
   location            = var.location
   resource_group_name = azurerm_resource_group.aks.name
   dns_prefix          = local.stack_name
-  kubernetes_version  = "1.19.6"
+  kubernetes_version  = "1.26.6"
 
   linux_profile {
     admin_username = var.node_admin_username
@@ -58,27 +58,27 @@ resource "azurerm_kubernetes_cluster" "aks" {
   }
 
   default_node_pool {
-    name                 = format("aks${local.environment}pool")
+    name                 = format("aks${local.environment}")
     node_count           = local.env_node_count
-    max_pods             = var.env_aks_max_pod_number
     type                 = "VirtualMachineScaleSets"
     vm_size              = local.env_node_size
     os_disk_type         = "Ephemeral"
     vnet_subnet_id       = azurerm_subnet.aks.id
-    orchestrator_version = "1.19.6"
-    availability_zones   = ["1", "2"]
+    orchestrator_version = "1.26.6"
     tags                 = local.env_tags
   }
 
-  service_principal {
-    client_id     = azuread_service_principal.aks.application_id
-    client_secret = azuread_service_principal_password.aks.value
+  identity {
+    type = "SystemAssigned"
   }
 
   network_profile {
-    load_balancer_sku = "Standard"
+    load_balancer_sku = "standard"
     network_plugin    = "azure"
   }
-
+  service_mesh_profile {
+           internal_ingress_gateway_enabled = true 
+          mode                             = "Istio"
+  }
   tags = local.env_tags
 }

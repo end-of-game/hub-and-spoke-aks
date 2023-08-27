@@ -8,7 +8,7 @@ resource "azurerm_resource_group" "vault" {
 
 # Create common Key Vault
 resource "azurerm_key_vault" "vault" {
-  name                            = local.stack_name
+  name                            = "vaultspokevituity" 
   location                        = var.location
   resource_group_name             = azurerm_resource_group.vault.name
   enabled_for_disk_encryption     = false

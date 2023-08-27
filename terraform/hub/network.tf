@@ -25,13 +25,6 @@ resource "azurerm_subnet" "waf" {
   address_prefixes     = [var.subnet_waf_cidr]
 }
 
-# Not used
-resource "azurerm_subnet" "management" {
-  name                 = "management"
-  resource_group_name  = azurerm_resource_group.hub.name
-  virtual_network_name = azurerm_virtual_network.hub.name
-  address_prefixes     = [var.subnet_management_cidr]
-}
 
 # Vnet peering for spokes
 data "azurerm_virtual_network" "spoke" {
