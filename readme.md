@@ -88,6 +88,8 @@ See <https://istio.io/docs/examples/bookinfo/>.
 
 ![image](terraformIAC/docs/img/noistio.svg)
 
+# Istio Add-on
+
 
 # Book sample deployment using Gitops
 
@@ -99,10 +101,12 @@ This scenario is a pull-based DevOps pipeline for a typical web application. The
 
 - The app code is developed by using an IDE such as Visual Studio Code.
 - The app code is committed to a GitHub repository.
- - GitHub Actions builds a container image from the app code and pushes the container image to Azure Container Registry.
+- GitHub Actions builds a container image from the app code and pushes the container image to Azure Container Registry.
 - GitHub Actions updates a Kubernetes manifest deployment file with the current image version that's based on the version number of the container image in Azure Container Registry.
 - Argo CD pulls from the Git repository.]
-  - Argo CD deploys the app to the AKS cluster.
+- Argo CD deploys the app to the AKS cluster.
+
+# Monitoring of Clusters and Service mesh
 
 ## Conclusion
 
