@@ -85,8 +85,9 @@ See <https://istio.io/docs/examples/bookinfo/>.
 
 [AKS Gitops](https://learn.microsoft.com/en-us/azure/architecture/example-scenario/gitops-aks/gitops-blueprint-aks#scenario-4-use-gitops-with-argo-cd-github-actions-and-aks-to-implement-cicd)
 
-![image](terraformIAC/docs/img/argocd.png)
+[Argocd](https://argo-cd.readthedocs.io/en/stable/)
 
+![image](terraformIAC/docs/img/argocd.png)
 This scenario is a pull-based DevOps pipeline for a typical web application. The pipeline uses GitHub Actions for build. For deployment, it uses Argo CD as the GitOps operator to pull and sync the app. The data flows through the scenario as follows:
 
 - The app code is developed by using an IDE such as Visual Studio Code.
