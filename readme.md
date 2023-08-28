@@ -88,6 +88,13 @@ See <https://istio.io/docs/examples/bookinfo/>.
 
 ![image](terraformIAC/docs/img/noistio.svg)
 
+
+# Book sample deployment using Gitops
+
+[AKS Gitops](https://learn.microsoft.com/en-us/azure/architecture/example-scenario/gitops-aks/gitops-blueprint-aks#scenario-4-use-gitops-with-argo-cd-github-actions-and-aks-to-implement-cicd)
+
+![image](terraformIAC/docs/img/argocd.png)
+
 ## Conclusion
 
 You have built a first version of an hub and spoke infrastructure for your AKS environements.
