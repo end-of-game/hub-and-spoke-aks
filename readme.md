@@ -1,5 +1,5 @@
 
-# Bookinfo Sample and terraform hub spoke deployment
+# Bookinfo Sample Microservices(Istio) and terraform hub spoke deployment
 
 This project contains sources to build an hub and spoke infrastructure on Azure with multiple AKS environments.
 
