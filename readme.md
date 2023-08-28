@@ -4,6 +4,8 @@
 This project contains sources to build an hub and spoke infrastructure on Azure with multiple AKS environments.
 
 ## Architecture overview
+![image](terraformIAC/docs/img/clusterimage.png)
+
 
 ## Requirements
 
