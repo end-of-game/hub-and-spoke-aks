@@ -12,7 +12,6 @@ spec:
       protocol: HTTP
     hosts:
     - "*"
-    - "bookdemo.csaabt.com"
   - port:
       number: 443
       name: https
