@@ -29,14 +29,14 @@ Maybe you haven't enough permissions to create Resource Group in your subscripti
 
 ### Service principal for Terraform
 
-[Setup Service Principal for Terraform](docs/tf_azure_authent.md)
+[Setup Service Principal for Terraform](terraformIAC/docs/tf_azure_authent.md)
 
 ### Backend
 
 Terraform needs a shared storage to store state files.
 In Azure, stores the state as a Blob with the given Key within the Blob Container within the Blob Storage Account. This backend also supports state locking and consistency checking via native capabilities of Azure Blob Storage.
 
-[Create the terraform backend if it doesn't already exists](docs/tf_backend.md)
+[Create the terraform backend if it doesn't already exists](terraformIAC/docs/tf_backend.md)
 
 ### Key vault
 
@@ -44,7 +44,7 @@ Infrastructure stacks often need a secret manager and this corresponds to good p
 
 This stack create the Key Vault itself but will also be responsible for maintaining permission delegations to users, groups and applications of the company to consume or manage secrets, keys and certificates.
 
-[Deploy the Key Vault if it doesn't already exists](terraform/vault/README.md)
+[Deploy the Key Vault if it doesn't already exists](terraformIAC/terraform/vault/README.md)
 
 ### Infrastructure
 
@@ -61,11 +61,11 @@ The infrastructure is divided in two different terraform stacks containing resou
 
 #### Create a spoke AKS environment
 
-[Follow these instruction to create an AKS environment](terraform/aks/README.md)
+[Follow these instruction to create an AKS environment](terraformIAC/terraform/aks/README.md)
 
 #### Create the hub
 
-[Follow these instruction to create the hub](terraform/hub/README.md)
+[Follow these instruction to create the hub](terraformIAC/terraform/hub/README.md)
 
 
 ## Conclusion
