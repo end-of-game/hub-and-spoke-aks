@@ -44,7 +44,7 @@ spec:
       serviceAccountName: bookinfo-details
       containers:
       - name: details
-        image: acraksclusterdemo.azurecr.io/details:15
+        image: aksvitacrdev.azurecr.io/details:2
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 9080
