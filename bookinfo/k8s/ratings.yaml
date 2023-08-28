@@ -44,7 +44,7 @@ spec:
       serviceAccountName: bookinfo-ratings
       containers:
       - name: ratings
-        image: acraksclusterdemo.azurecr.io/ratings:3
+        image: aksvitacrdev.azurecr.io/ratings:1
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 9080
