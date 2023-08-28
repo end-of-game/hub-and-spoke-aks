@@ -20,7 +20,7 @@ Before you can run the Bookinfo app, you must have the following installed:
 - [Azure CLI 2.18.0](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
 - [Terraform 1.5.6](https://www.terraform.io/downloads.html)
 - [kubectl 1.20.1](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
-- [helm 3.2.1](https://helm.sh/docs/intro/install/)
+- [helm 3.12.0](https://helm.sh/docs/intro/install/)
 ![archi](docs/img/archi.png)
 
 ## Requirements
