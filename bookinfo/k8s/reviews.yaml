@@ -44,7 +44,7 @@ spec:
       serviceAccountName: bookinfo-reviews
       containers:
       - name: reviews
-        image: acraksclusterdemo.azurecr.io/reviews:9
+        image: aksvitacrdev.azurecr.io/reviews:1
         imagePullPolicy: IfNotPresent
         env:
         - name: LOG_DIR
