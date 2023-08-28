@@ -1,27 +1,9 @@
 
-# Bookinfo Sample
+# Bookinfo Sample and terraform hub spoke deployment
 
 This project contains sources to build an hub and spoke infrastructure on Azure with multiple AKS environments.
 
 ## Architecture overview
-
-The Bookinfo app is a sample microservices application that demonstrates various Kubernetes features. It is made up of four microservices:
-
-- productpage: The productpage microservice calls the details and reviews microservices to populate the page.
-- details: The details microservice contains book information.
-- reviews: The reviews microservice contains book reviews. It also calls the ratings microservice.
-- ratings: The ratings microservice contains book rating information.
-
-**Prerequisites**
-Before you can run the Bookinfo app, you must have the following installed:
-
-- [Git](https://git-scm.com/downloads)
-- [Python 3.7](https://www.python.org/downloads/release/python-370/)
-- [Azure CLI 2.18.0](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
-- [Terraform 1.5.6](https://www.terraform.io/downloads.html)
-- [kubectl 1.20.1](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
-- [helm 3.12.0](https://helm.sh/docs/intro/install/)
-![archi](docs/img/archi.png)
 
 ## Requirements
 
@@ -85,42 +67,6 @@ The infrastructure is divided in two different terraform stacks containing resou
 
 [Follow these instruction to create the hub](terraform/hub/README.md)
 
-## End to end test
-
-Get the public IP of the Application Gateway.
-Access the demo app deployed in the dev environment from your host by requesting the public IP of the Application Gateway:
-
-```bash
-$ curl -H "Host: dev.linkbynet.com" 20.74.8.233
-```
-
----
-<!DOCTYPE html>
-<html>
-<head>
-<title>Welcome to nginx!</title>
-<style>
-    body {
-        width: 35em;
-        margin: 0 auto;
-        font-family: Tahoma, Verdana, Arial, sans-serif;
-    }
-</style>
-</head>
-<body>
-<h1>Welcome to nginx!</h1>
-<p>If you see this page, the nginx web server is successfully installed and
-working. Further configuration is required.</p>
-
-<p>For online documentation and support please refer to
-<a href="http://nginx.org/">nginx.org</a>.<br/>
-Commercial support is available at
-<a href="http://nginx.com/">nginx.com</a>.</p>
-
-<p><em>Thank you for using nginx.</em></p>
-</body>
-</html>
----
 
 ## Conclusion
 
