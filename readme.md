@@ -1,4 +1,5 @@
-Bookinfo App
+Bookinfo Sample
+
 The Bookinfo app is a sample microservices application that demonstrates various Kubernetes features. It is made up of four microservices:
 
 productpage: The productpage microservice calls the details and reviews microservices to populate the page.
