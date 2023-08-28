@@ -82,6 +82,12 @@ The infrastructure is divided in two different terraform stacks containing resou
 [Follow these instruction to create the hub](terraformIAC/terraform/hub/README.md)
 
 
+# Bookinfo Sample
+
+See <https://istio.io/docs/examples/bookinfo/>.
+
+![image](terraformIAC/docs/img/noistio.svg)
+
 ## Conclusion
 
 You have built a first version of an hub and spoke infrastructure for your AKS environements.
