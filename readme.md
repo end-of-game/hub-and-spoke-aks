@@ -141,7 +141,7 @@ $ helm install \
 kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.18/samples/addons/prometheus.yaml
 
 ```
-**start kali dashboard:**
+**start kiali dashboard:**
 ```
  kubectl port-forward svc/kiali 20001:20001 -n aks-istio-system
 ```
