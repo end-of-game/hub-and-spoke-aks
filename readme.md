@@ -99,6 +99,39 @@ This scenario is a pull-based DevOps pipeline for a typical web application. The
 
 # Monitoring of Clusters and Service mesh
 
+- [Install Kiali into AKS-istio-system namespace](https://kiali.io/docs/installation/installation-guide/install-with-helm/)
+
+```
+$ helm install \
+    --set cr.create=true \
+    --set cr.namespace=aks-istio-system \
+    --namespace kiali-operator \
+    --create-namespace \
+    kiali-operator \
+    kiali/kiali-operator
+```
+- [Install prometheus into AKS-istio-system namespace]([https://kiali.io/docs/installation/installation-guide/install-with-helm/](https://istio.io/latest/docs/ops/integrations/prometheus/))
+```
+kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.18/samples/addons/prometheus.yaml
+
+```
+**start kali dashboard:**
+```
+ kubectl port-forward svc/kiali 20001:20001 -n aks-istio-system
+```
+
+**Generate Kiali token for Authentication:**
+```
+kubectl -n aks-istio-system create token kiali-service-account
+```
+
+**Access Kiali dashboard:**
+
+```
+http://localhost:20001
+```
+
+
 ## Conclusion
 
 You have built a first version of an hub and spoke infrastructure for your AKS environements.
