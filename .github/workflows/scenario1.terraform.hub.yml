@@ -11,21 +11,21 @@ on:
 
   push:
     branches:
-      - main
+      - master
     paths:
       - '.github/workflows/scenario1.terraform.hub.yml'
       - '.github/workflows/_template.terraform.yml'
-      - 'scenarios/secure-baseline-multitenant/terraform/hub/**'
+      - 'terraformIAC/terraform/hub/**'
       - '!scenarios/secure-baseline-multitenant/terraform/hub/**.md'
 
   pull_request:
     branches:
-      - main
+      - master
       - feature/*
     paths:
       - '.github/workflows/scenario1.terraform.hub.yml'
       - '.github/workflows/_template.terraform.yml'
-      - 'scenarios/secure-baseline-multitenant/terraform/hub/**'
+      - 'terraformIAC/terraform/hub/**'
       - '!scenarios/secure-baseline-multitenant/terraform/hub/**.md'
 
 permissions:
@@ -34,7 +34,7 @@ permissions:
   pull-requests: write
 
 env:
-  modulePath: 'scenarios/secure-baseline-multitenant/terraform/hub'
+  modulePath: 'terraformIAC/terraform/hub'
   terraformVersion: 1.5.2 # must be greater than or equal to 1.2 for OIDC
   backendStateKey: 'scenario1.hub.tfstate'
   tfvarPath: 'Parameters/uat.tfvars'
