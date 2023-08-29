@@ -91,7 +91,9 @@ az aks mesh enable --resource-group ${RESOURCE_GROUP} --name ${CLUSTER}
 ```
 
 ****Istio Ingress ****
-See <https://learn.microsoft.com/en-us/azure/aks/istio-deploy-ingress>
+- See <https://learn.microsoft.com/en-us/azure/aks/istio-deploy-ingress>
+  
+- Roadmap <https://techcommunity.microsoft.com/t5/apps-on-azure-blog/istio-based-service-mesh-add-on-for-azure-kubernetes-service/ba-p/3800229>
 
 Enable external Ingress:
 
