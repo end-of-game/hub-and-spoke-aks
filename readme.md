@@ -3,8 +3,11 @@
 
 This repository encompasses both enterprise architecture guidelines and a reference implementation for deploying the Azure Kubernetes cluster. It includes best practices, considerations and deployable artifacts for implementing a common reference architecture.
 
-[AKS Baseline Architecture](https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks/baseline-aks)
-[AKS Baseline Terraform](https://github.com/abhishektyagi9/aks-baseline-automation/blob/main/.github/workflows/IaC-terraform-AKS.yml)
+- [AKS Baseline Architecture](https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks/baseline-aks)
+
+- [AKS Baseline Terraform](https://github.com/abhishektyagi9/aks-baseline-automation/blob/main/.github/workflows/IaC-terraform-AKS.yml)
+
+- [AKS landing Zone](https://github.com/Azure/AKS-Landing-Zone-Accelerator)
 ## Architecture Overview
 ![image](terraformIAC/docs/img/clusterimage.png)
 
