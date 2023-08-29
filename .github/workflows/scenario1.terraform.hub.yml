@@ -1,4 +1,4 @@
-name: 'Scenario 1: Terraform HUB Multi-tenant Secure Baseline'
+name: 'Scenario 1: Terraform HUB Secure Baseline'
 
 on:
   workflow_dispatch:
