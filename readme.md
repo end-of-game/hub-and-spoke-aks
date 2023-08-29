@@ -78,8 +78,28 @@ See <https://istio.io/docs/examples/bookinfo/>.
 
 ![image](terraformIAC/docs/img/noistio.svg)
 
-# Istio Add-on
+# IstioService Mesh Add-on
 
+See <https://learn.microsoft.com/en-us/azure/aks/istio-deploy-addon>.
+
+```
+az aks mesh enable --resource-group ${RESOURCE_GROUP} --name ${CLUSTER}
+```
+
+****Istio Ingress ****
+See <https://learn.microsoft.com/en-us/azure/aks/istio-deploy-ingress>
+
+Enable external Ingress:
+
+```
+az aks mesh enable-ingress-gateway --resource-group $RESOURCE_GROUP --name $CLUSTER --ingress-gateway-type external
+```
+
+Enable Internal Ingress:
+
+```
+az aks mesh enable-ingress-gateway --resource-group $RESOURCE_GROUP --name $CLUSTER --ingress-gateway-type internal
+```
 
 # Book sample deployment using Gitops
 
