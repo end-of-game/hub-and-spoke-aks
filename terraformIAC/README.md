@@ -6,7 +6,7 @@ This project contains sources to build an hub and spoke infrastructure on Azure 
 
 The archirecture is built upon an [hub and spoke network topology](https://docs.microsoft.com/en-us/azure/architecture/reference-architectures/hybrid-networking/hub-spoke?tabs=cli).
 
-![archi](docs/img/archi.png)
+
 
 ## Requirements
 
