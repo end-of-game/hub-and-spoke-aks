@@ -125,6 +125,8 @@ This scenario is a pull-based DevOps pipeline for a typical web application. The
 
 # Monitoring of Clusters and Service mesh
 
+For this demo I am using Kiali to monitor service mesh, but Microsoft-managed grafana and promethious can be leveraged as well.
+
 - [Install Kiali into AKS-istio-system namespace](https://kiali.io/docs/installation/installation-guide/install-with-helm/)
 
 ```
