@@ -109,6 +109,8 @@ az aks mesh enable-ingress-gateway --resource-group $RESOURCE_GROUP --name $CLUS
 
 # Book sample deployment using Gitops
 
+Please follow GetStarted document of ARGO CD to enable ARGO CD on your management cluster or dev cluster (for testing)
+
 [AKS Gitops](https://learn.microsoft.com/en-us/azure/architecture/example-scenario/gitops-aks/gitops-blueprint-aks#scenario-4-use-gitops-with-argo-cd-github-actions-and-aks-to-implement-cicd)
 
 [Argocd](https://argo-cd.readthedocs.io/en/stable/)
