@@ -83,15 +83,15 @@ See <https://istio.io/docs/examples/bookinfo/>.
 ![image](terraformIAC/docs/img/noistio.svg)
 
 # IstioService Mesh Add-on
-
-See <https://learn.microsoft.com/en-us/azure/aks/istio-deploy-addon>.
+Please follow the instructions available in following article to enable Istion on your AKS cluster
+ <https://learn.microsoft.com/en-us/azure/aks/istio-deploy-addon>.
 
 ```
 az aks mesh enable --resource-group ${RESOURCE_GROUP} --name ${CLUSTER}
 ```
 
 ****Istio Ingress ****
-- See <https://learn.microsoft.com/en-us/azure/aks/istio-deploy-ingress>
+- please follow instruction here <https://learn.microsoft.com/en-us/azure/aks/istio-deploy-ingress>
   
 - Roadmap <https://techcommunity.microsoft.com/t5/apps-on-azure-blog/istio-based-service-mesh-add-on-for-azure-kubernetes-service/ba-p/3800229>
 
@@ -109,7 +109,7 @@ az aks mesh enable-ingress-gateway --resource-group $RESOURCE_GROUP --name $CLUS
 
 # Book sample deployment using Gitops
 
-Please follow GetStarted document of ARGO CD to enable ARGO CD on your management cluster or dev cluster (for testing)
+Please follow the GetStarted document of ARGO CD to enable ARGO CD on your management cluster or dev cluster (for testing)
 
 [AKS Gitops](https://learn.microsoft.com/en-us/azure/architecture/example-scenario/gitops-aks/gitops-blueprint-aks#scenario-4-use-gitops-with-argo-cd-github-actions-and-aks-to-implement-cicd)
 
