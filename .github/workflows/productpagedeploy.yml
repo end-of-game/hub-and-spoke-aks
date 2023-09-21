@@ -1,0 +1,119 @@
+## ------------------------------------------------------------------------------------------------------------------------
+## Pull-Based GitOps Deployment
+## This workflow takes in an EXISTING ACR and AKS cluster and updates the AKS manifest files for GitOps to deploy the app. 
+## Assumptions:
+##     Existing ACR
+##     Existing AKS cluster
+##     ACR is attached to AKS cluster (no image pull secret required)
+## -------------------------------------------------------------------------------------------------------------------------
+
+# This workflow demonstrates building and pushing a container image to an Azure Container Registry.
+# The workflow then updates the necessary Kubernetes manifest deployment files in the GitHub repo so that a GitOps operator can sync them to deploy an application to an Azure Kubernetes Service cluster.
+# It is split into separate jobs for readability but could be squashed into a single job if that best suits your scenario.
+name: App Deploy productpage - GitOps
+
+on: 
+  push:
+    branches:
+      - master
+    paths:
+      - 'bookinfo/src/productpage/**'
+
+permissions:
+      id-token: write
+      contents: write
+jobs:
+  BuildPush:
+    runs-on: ubuntu-latest
+    environment: dev
+    steps:
+      - name: Get ACR Name
+        id: acrname
+        run: |
+          acrname="aksvitacrdev"
+          echo "::set-output name=acrname::$acrname"
+      - name: Get App Name
+        id: appname
+        run: |
+          appname="productpage"
+          echo "::set-output name=appname::$appname"
+
+      # Get the application code from the repo
+      - name: Get application code from the repo
+        uses: actions/checkout@main
+        with:
+          repository: ${{ inputs.AppRepo}}
+          #ref: ${{ inputs.AppRepoRef}}
+      
+      # Log into your Azure subscription
+      - uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          enable-AzPSSession: true
+      
+      - name: Connect to Azure Container Registry (ACR)
+        id: acrconnect
+        run: |
+          echo "Retrieving access token from ${{ steps.acrname.outputs.acrname }}"
+          TOKEN=$(az acr login -n ${{ steps.acrname.outputs.acrname }} --expose-token)
+
+          if [ -z "$TOKEN" ]
+          then
+            echo "ACR Token was not retrieved successfully"
+            exit 1
+          fi
+
+          ACRTOKEN=$(echo $TOKEN | jq -r ".accessToken")
+          LOGINSERVER=$(echo $TOKEN | jq -r ".loginServer")
+
+          echo "ACR Login Server: $LOGINSERVER"
+          echo "::set-output name=loginServer::$LOGINSERVER"
+
+          echo "Passing token as stdin to docker login"
+          echo $ACRTOKEN | docker login $LOGINSERVER -u 00000000-0000-0000-0000-000000000000 --password-stdin
+
+      # Builds and Pushes the container image to the Azure Container Registry (ACR)
+      - name: Container build and push to a Azure Container Registry (ACR)
+        env:
+          APPNAME: "${{ steps.appname.outputs.appname }}"
+        run: |
+          cd "bookinfo/src/${{ steps.appname.outputs.appname }}"
+          docker build . -t ${{ steps.acrname.outputs.acrname }}.azurecr.io/${{ steps.appname.outputs.appname }}:${{ github.run_number }}
+          docker push ${{ steps.acrname.outputs.acrname }}.azurecr.io/${{ steps.appname.outputs.appname }}:${{ github.run_number }}
+  Update-K8s-Manifests:
+    name: Update K8s Deployment Manifest with Image Version
+    needs: BuildPush
+    environment: ${{ inputs.Environment }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get ACR Name
+        id: acrname
+        run: |
+          acrname="aksvitacrdev"
+          echo "::set-output name=acrname::$acrname"
+      - name: Get App Name
+        id: appname
+        run: |
+          appname="productpage"
+          echo "::set-output name=appname::$appname"
+      # Checks out the baseline repository
+      - uses: actions/checkout@v2
+
+      - name: Update image name in manifest file
+        uses: azure/powershell@v1
+        with:
+          inlineScript: |
+            $line = Get-Content bookinfo/k8s/productpage.yaml | Select-String image: | Select-Object -ExpandProperty Line
+            $content = Get-Content bookinfo/k8s/productpage.yaml
+            $content | ForEach-Object {$_ -replace $line,"        image: ${{ steps.acrname.outputs.acrname }}.azurecr.io/${{ steps.appname.outputs.appname }}:${{ github.run_number }}"} | Set-Content bookinfo/k8s/productpage.yaml
+          azPSVersion: "latest"
+    
+      - name: Commit changes in manifest to repo
+        run: | 
+          git config user.name "GitHub Actions Bot"
+          git config user.email ""
+          git add bookinfo/k8s/productpage.yaml
+          git commit -m "Update image version in K8s Deployment manifests file"
+          git push origin
